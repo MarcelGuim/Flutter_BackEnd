@@ -1,12 +1,13 @@
 // src/routes/user_routes.ts
 import express from 'express';
 import {
-    saveMethodHandler,
-    createUserHandler,
-    getAllUsersHandler,
-    getUserByIdHandler,
-    updateUserHandler,
-    deleteUserHandler
+  saveMethodHandler,
+  createUserHandler,
+  getAllUsersHandler,
+  getUserByIdHandler,
+  updateUserHandler,
+  deleteUserHandler,
+  loginUserHandler
 } from '../users/user_controller.js';
 
 const router = express.Router();
@@ -54,6 +55,8 @@ router.get('/main', saveMethodHandler);
  *                 type: integer
  *               email:
  *                 type: string
+ *               password:
+ *                 type: string
  *     responses:
  *       201:
  *         description: Usuario creado exitosamente
@@ -78,11 +81,11 @@ router.post('/users', createUserHandler);
  *               items:
  *                 type: object
  *                 properties:
- *                  name:
+ *                   name:
  *                     type: string
- *                  age:
- *                    type: integer
- *                  email:
+ *                   age:
+ *                     type: integer
+ *                   email:
  *                     type: string
  */
 router.get('/users', getAllUsersHandler);
@@ -109,12 +112,12 @@ router.get('/users', getAllUsersHandler);
  *             schema:
  *               type: object
  *               properties:
- *                  name:
+ *                 name:
  *                   type: string
  *                 age:
  *                   type: integer
  *                 email:
- *                    type: string
+ *                   type: string
  *       404:
  *         description: Usuario no encontrado
  */
@@ -141,12 +144,12 @@ router.get('/users/:id', getUserByIdHandler);
  *           schema:
  *             type: object
  *             properties:
- *                 name:
- *                   type: string
- *                 age:
- *                   type: integer
- *                 email:
- *                    type: string
+ *               name:
+ *                 type: string
+ *               age:
+ *                 type: integer
+ *               email:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Usuario actualizado exitosamente
@@ -177,4 +180,37 @@ router.put('/users/:id', updateUserHandler);
  */
 router.delete('/users/:id', deleteUserHandler);
 
+/**
+ * @openapi
+ * /api/login:
+ *   post:
+ *     summary: Inicia sesión
+ *     description: Inicia sesión con las credenciales proporcionadas.
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: fet i dret
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *       401:
+ *         description: t'has equivocat
+ */
+router.post('/login', loginUserHandler);
 export default router;

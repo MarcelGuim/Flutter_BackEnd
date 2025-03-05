@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
     email: {
         type : String,
         required : true
+    },
+    password: {
+        type: String,
+        required: true
     }
 });
 
@@ -19,7 +23,8 @@ export interface IUser{
     name : string;
     age : number;
     email : string;
-
+    password: string;
+    _id?: mongoose.ObjectId;
 }
 
 const User = mongoose.model('User', userSchema);
