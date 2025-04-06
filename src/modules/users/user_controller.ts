@@ -59,7 +59,10 @@ export const loginUserHandler = async (req: Request, res: Response) =>{
         if (!user){
             return res.status(401).json({message: 'error credencials'});
         }
-        res.status(200).json({message: 'login fet'})
+        res.status(200).json({
+            message: 'login fet',
+            user: user
+        })
     }
     catch (error) {
         res.status(500).json({message: 'error server', error});
