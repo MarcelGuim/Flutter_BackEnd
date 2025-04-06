@@ -59,6 +59,7 @@ export const loginUserHandler = async (req: Request, res: Response) =>{
         if (!user){
             return res.status(401).json({message: 'error credencials'});
         }
+        console.log("returning user: " + user)
         res.status(200).json({
             message: 'login fet',
             user: user
